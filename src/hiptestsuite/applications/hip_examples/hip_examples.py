@@ -24,6 +24,7 @@ from typing import Union, List
 from hiptestsuite.test_classifier import TestClassifier
 from hiptestsuite.applications.hip_examples.hip_examples_build_amd import BuildRunAmd
 from hiptestsuite.applications.hip_examples.hip_examples_build_nvidia import BuildRunNvidia
+from hiptestsuite.applications.hip_examples.hip_examples_build_spirv import BuildRunSpirv
 from hiptestsuite.common.hip_get_packages import HipPackages
 from hiptestsuite.common.hip_shell import *
 
@@ -107,6 +108,8 @@ class PrepareTest():
             self.prepareobj = BuildRunNvidia(self.thistestpath)
         elif platform == HIP_PLATFORM.amd:
             self.prepareobj = BuildRunAmd(self.thistestpath)
+        elif platform == HIP_PLATFORM.spirv:
+            self.prepareobj = BuildRunSpirv(self.thistestpath)
         else:
             print("Invalid Platform")
             return False

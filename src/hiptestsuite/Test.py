@@ -131,6 +131,7 @@ class Optimization_Level(Enum):
 class HIP_PLATFORM(Enum):
     nvidia = auto()
     amd = auto()
+    spirv = auto()
 
 
 class HIPCCCompileData(CompileData, ConfigProcessor):
@@ -162,6 +163,9 @@ class HIPCCCompileData(CompileData, ConfigProcessor):
         elif self.config.HIP_PLATFORM == "nvidia":
             print("Platform selected: nvidia")
             self.HIP_PLATFORM = HIP_PLATFORM.nvidia
+        elif self.config.HIP_PLATFORM == "spirv":
+            print("Platform selected: spirv")
+            self.HIP_PLATFORM = HIP_PLATFORM.spirv
         elif self.config.HIP_PLATFORM is None:
             print("Platform selected: amd")
             self.HIP_PLATFORM = HIP_PLATFORM.amd
