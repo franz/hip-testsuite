@@ -24,6 +24,7 @@ from typing import Union, List
 from hiptestsuite.test_classifier import TestClassifier
 from hiptestsuite.applications.hpc_apps.quicksilver.quicksilver_build_amd import BuildRunAmd
 from hiptestsuite.applications.hpc_apps.quicksilver.quicksilver_build_nvidia import BuildRunNvidia
+from hiptestsuite.applications.hpc_apps.quicksilver.quicksilver_build_spirv import BuildRunSpirv
 from hiptestsuite.common.hip_get_packages import HipPackages
 from hiptestsuite.common.hip_shell import execshellcmd
 
@@ -65,6 +66,8 @@ class PrepareTest():
         isBinaryPresent = True
         if platform == HIP_PLATFORM.amd:
             self.prepareobj = BuildRunAmd(self.thistestpath, logFile)
+        if platform == HIP_PLATFORM.spirv:
+            self.prepareobj = BuildRunSpirv(self.thistestpath, logFile)
         elif platform == HIP_PLATFORM.nvidia:
             self.prepareobj = BuildRunNvidia(self.thistestpath, logFile, cuda_target)
         else:
