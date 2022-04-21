@@ -23,6 +23,7 @@ from hiptestsuite.Test import HIPTestData, TestResult, HIP_PLATFORM
 from typing import Union, List
 from hiptestsuite.test_classifier import TestClassifier
 from hiptestsuite.applications.hpc_apps.kokkos.kokkos_build_amd import BuildRunAmd
+from hiptestsuite.applications.hpc_apps.kokkos.kokkos_build_spirv import BuildRunSpirv
 from hiptestsuite.common.hip_get_packages import HipPackages
 from hiptestsuite.common.hip_shell import execshellcmd
 
@@ -62,6 +63,8 @@ class PrepareTest():
     def buildtest(self, logFile, platform):
         if platform == HIP_PLATFORM.amd:
             self.prepareobj = BuildRunAmd(self.thistestpath, logFile)
+        if platform == HIP_PLATFORM.spirv:
+            self.prepareobj = BuildRunSpirv(self.thistestpath, logFile)
         else:
             print("Invalid Platform")
             return False

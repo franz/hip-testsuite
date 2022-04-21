@@ -121,9 +121,9 @@ repos = {
         "commit_id": "42687cce5085e0e175cb02fefe87fbb3d952fd5c"
     },
     "kokkos": {
-        "repo_url": "https://github.com/kokkos/kokkos.git",
+        "repo_url": "https://github.com/CHIP-SPV/kokkos.git",
         "branch": None,
-        "commit_id": "c28a8b03288b185f846ddfb1b7c08213e12e2634"
+        "commit_id": "d71a0b749167c90dfa86912202be98c65f18932e"
     },
     "mfem": {
         "repo_url": "https://github.com/mfem/mfem.git ./mfem",
