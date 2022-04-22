@@ -23,6 +23,7 @@ from hiptestsuite.Test import HIPTestData, TestResult, HIP_PLATFORM
 from typing import Union, List
 from hiptestsuite.test_classifier import TestClassifier
 from hiptestsuite.applications.hpc_apps.gridtools.gridtools_build_amd import BuildRunAmd
+from hiptestsuite.applications.hpc_apps.gridtools.gridtools_build_spirv import BuildRunSpirv
 from hiptestsuite.applications.hpc_apps.gridtools.gridtools_build_nvidia import BuildRunNvidia
 from hiptestsuite.common.hip_get_packages import HipPackages
 from hiptestsuite.common.hip_shell import execshellcmd
@@ -80,6 +81,8 @@ class PrepareTest():
         isBinaryPresent = True
         if platform == HIP_PLATFORM.amd:
             self.prepareobj = BuildRunAmd(self.thistestpath, logFile)
+        if platform == HIP_PLATFORM.spirv:
+            self.prepareobj = BuildRunSpirv(self.thistestpath, logFile)
         elif platform == HIP_PLATFORM.nvidia:
             self.prepareobj = BuildRunNvidia(self.thistestpath, logFile, cuda_target)
         else:
@@ -140,8 +143,12 @@ class GRIDTOOLSCONVG(Tester, PrepareTest):
         if not os.path.isfile(\
         os.path.join(self.thistestpath, "boost_1_72_0.tar.bz2")):
             print("Boost Package boost_1_72_0.tar.bz2 not available under src/hiptestsuite/applications/hpc_apps/gridtools/.")
-            print("Please download and copy Boost package in src/hiptestsuite/applications/hpc_apps/gridtools folder.")
-            test_data.test_result = TestResult.ERROR
+            #print("Please download and copy Boost package in src/hiptestsuite/applications/hpc_apps/gridtools folder.")
+            print("Downloading...")
+            download = "cd " + self.thistestpath + ";" + "wget https://boostorg.jfrog.io/artifactory/main/release/1.72.0/source/boost_1_72_0.tar.bz2"
+            execshellcmd(download, None, None)
+            print("Download complete.")
+            #test_data.test_result = TestResult.ERROR
             return
         # Create GT_TREE_DIR
         gt_tree_dir = os.path.join(self.thistestpath, "GridTools")
