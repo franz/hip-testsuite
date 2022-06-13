@@ -70,10 +70,10 @@ class BuildRunSpirv():
             #cmdexc = self.setenv(gpuarch)
             cmdexc += "export CXX=/opt/rocm/bin/hipcc;"
             cmdexc += "cd $GT_TREE_DIR;cd $GRIDTOOLS_TREE_DIR;git apply ../../gridtools.patch;mkdir -p $GRIDTOOLS_BUILD_DIR;cd $GRIDTOOLS_BUILD_DIR;"
-            cmdexc += "CXX=/opt/rocm/bin/hipcc cmake .. -DBUILD_TESTING=OFF -DBoost_INCLUDE_DIR=$BOOST_INSTALL_DIR/include " +\
-            "-DGT_CUDA_COMPILATION_TYPE=$GT_CUDA_COMPILATION_TYPE  + " " +\
-            "-DGT_ENABLE_BACKEND_CUDA=ON -DGT_ENABLE_BACKEND_MC=OFF -DGT_ENABLE_BACKEND_X86=OFF -DGT_ENABLE_BACKEND_NAIVE=OFF " +\
-            "-DGT_USE_MPI=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$GRIDTOOLS_INSTALL_DIR;"
+            cmdexc += "CXX=/opt/rocm/bin/hipcc cmake .. -DBUILD_TESTING=OFF -DBoost_INCLUDE_DIR=$BOOST_INSTALL_DIR/include " 
+            cmdexc += "-DGT_CUDA_COMPILATION_TYPE=$GT_CUDA_COMPILATION_TYPE "
+            cmdexc += "-DGT_ENABLE_BACKEND_CUDA=ON -DGT_ENABLE_BACKEND_MC=OFF -DGT_ENABLE_BACKEND_X86=OFF -DGT_ENABLE_BACKEND_NAIVE=OFF "
+            cmdexc += "-DGT_USE_MPI=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$GRIDTOOLS_INSTALL_DIR;"
             cmdexc += "make -j;"
             cmdexc += "make install;"
             runlogdump = tempfile.TemporaryFile("w+")
